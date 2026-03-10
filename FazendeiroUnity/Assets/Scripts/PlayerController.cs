@@ -42,17 +42,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         }
 
-        if(pauseAction.WasPerformedThisFrame())
-        {
-            InputActions.FindActionMap("UI").Enable();
-            InputActions.FindActionMap("Player").Disable();
-            Debug.Log("esc");
-        } else if(despauseAction.WasPerformedThisFrame())
-        {
-            InputActions.FindActionMap("UI").Disable();
-            InputActions.FindActionMap("Player").Enable();
-            Debug.Log("UI");
-        }
+        Pause();
         
     }
 
@@ -73,14 +63,28 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
-        InputActions.FindActionMap("Player").Enable();
         
     }
 
     private void OnDisable()
     {
         InputActions.FindActionMap("Player").Disable();
-        InputActions.FindActionMap("Player").Disable();
+    }
+    
+    private void Pause()
+    {
+        if(pauseAction.WasPerformedThisFrame())
+        {
+            InputActions.FindActionMap("UI").Enable();
+            InputActions.FindActionMap("Player").Disable();
+            Debug.Log("esc");
+        } else if(despauseAction.WasPerformedThisFrame())
+        {
+            InputActions.FindActionMap("UI").Disable();
+            InputActions.FindActionMap("Player").Enable();
+            Debug.Log("UI");
+        }
+        
     }
 
     private void Awake()
