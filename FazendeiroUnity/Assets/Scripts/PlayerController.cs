@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private InputAction fireAction;
     private InputAction pauseAction;
     private InputAction despauseAction;
+    private InputAction invisibleAction;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Pause();
+        FicarInvisivel();
         
     }
 
@@ -87,11 +89,20 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void FicarInvisivel()
+    {
+        if (invisibleAction.WasPerformedThisFrame())
+        {
+            print("invisivel");
+        }
+    }
+
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         fireAction = InputSystem.actions.FindAction("Jump");
         pauseAction = InputSystem.actions.FindAction("Pause");
         despauseAction = InputSystem.actions.FindAction("PauseUI");
+        invisibleAction = InputSystem.actions.FindAction("Invisivel");
     } 
 }
