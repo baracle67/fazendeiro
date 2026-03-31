@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject painelPause;
+    [SerializeField] private GameObject iconePause;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,11 +16,13 @@ public class PauseMenu : MonoBehaviour
     public void Pausar()
     {
         painelPause.SetActive(true);
+        iconePause.SetActive(false);
     }
 
     public void Despause()
     {
         painelPause.SetActive(false);
+        iconePause.SetActive(true);
     }
 
     public void Sair()
