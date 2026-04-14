@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DetectCollisions : MonoBehaviour
 {
-    public int pontos = 0;
+    public PontosPlayer pontosscript;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,8 @@ public class DetectCollisions : MonoBehaviour
     {
         Destroy(gameObject);
         Destroy(other.gameObject);
-        pontos+=1;
-        print("pontos: " + pontos);
+        pontosscript.GanharPontos();
+        
     }
+
 }

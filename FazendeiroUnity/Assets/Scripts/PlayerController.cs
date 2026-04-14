@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -63,10 +64,14 @@ public class PlayerController : MonoBehaviour
             Despause();
         }
 
-        FicarInvisivel();
         if(vida<=0)
         {
             Destroy(gameObject);
+        }
+        
+        if (invisibleAction.WasPerformedThisFrame())
+        {
+            FicarInvisivel(); 
         }
         
     }
@@ -124,27 +129,19 @@ public class PlayerController : MonoBehaviour
     }
 
     public void FicarInvisivel()
-    {
-        if (invisibleAction.WasPerformedThisFrame())
-        {
-            print("invisivel");
-            transform.localScale = Vector3.zero;
-            coroutine = WaitAndPrint(2.0f);
-            StartCoroutine(coroutine);
-        }
+    {        
+        print("invisivel");
+        transform.localScale = Vector3.zero;
+        coroutine = WaitAndPrint(2.0f);
+        StartCoroutine(coroutine);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Destroy(other.gameObject);
         vida-=1;
-        print(vida);
-    }
-
-      public void AddScore(int points)
-    {
-        vida += points;
         VidaTexto();
+        print(vida);
     }
 
     void VidaTexto()
