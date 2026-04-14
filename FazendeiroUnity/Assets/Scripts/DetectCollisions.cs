@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
+    public int pontos = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +21,7 @@ public class DetectCollisions : MonoBehaviour
     {
         Destroy(gameObject);
         Destroy(other.gameObject);
+        pontos+=1;
+        print("pontos: " + pontos);
     }
 }

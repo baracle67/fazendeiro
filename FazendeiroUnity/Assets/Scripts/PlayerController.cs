@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject painelPause;
     [SerializeField] private GameObject iconePause;
     MoveForward animal;
+    int vida = 3;
     
 
     // Start is called before the first frame update
@@ -61,6 +62,10 @@ public class PlayerController : MonoBehaviour
         }
 
         FicarInvisivel();
+        if(vida<=0)
+        {
+            Destroy(gameObject);
+        }
         
     }
 
@@ -125,6 +130,13 @@ public class PlayerController : MonoBehaviour
             coroutine = WaitAndPrint(2.0f);
             StartCoroutine(coroutine);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
+        vida-=1;
+        print(vida);
     }
 
     private IEnumerator WaitAndPrint(float waitTime)
