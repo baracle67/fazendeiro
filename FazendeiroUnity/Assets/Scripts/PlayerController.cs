@@ -19,11 +19,15 @@ public class PlayerController : MonoBehaviour
     private IEnumerator coroutine;
     [SerializeField] private GameObject painelPause;
     [SerializeField] private GameObject iconePause;
+    MoveForward animal;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         painelPause.SetActive(false);
+        animal = GameObject.FindGameObjectWithTag("animal").GetComponent<MoveForward>();
+        
     }
 
     // Update is called once per frame
@@ -77,7 +81,6 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
-        
     }
 
     private void OnDisable()
@@ -92,6 +95,7 @@ public class PlayerController : MonoBehaviour
         InputActions.FindActionMap("Player").Disable();
         painelPause.SetActive(true);
         iconePause.SetActive(false);
+        animal.Parar();
         Debug.Log("esc");
     }
 
@@ -101,6 +105,7 @@ public class PlayerController : MonoBehaviour
         InputActions.FindActionMap("Player").Enable();
         painelPause.SetActive(false);
         iconePause.SetActive(true);
+        animal.Andar();
         Debug.Log("UI");
         
     }
