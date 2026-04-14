@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -4098248050023684936}
   m_Layer: 0
   m_Name: Food_Pizza_01
-  m_TagString: Untagged
+  m_TagString: pizza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3368550998252044939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4b6c12f354760d45aa6dcd5093df70e, type: 3}
   m_Name: 
@@ -189,9 +189,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3368550998252044939}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23c1d5619a3ae034c83ce8d817da38b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pizarange
   speed: 20
+  timerIda: 1.5
