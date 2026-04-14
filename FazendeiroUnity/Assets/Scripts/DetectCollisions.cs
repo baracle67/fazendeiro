@@ -8,11 +8,13 @@ using TMPro;
 
 public class DetectCollisions : MonoBehaviour
 {
-    public PontosPlayer pontosscript;
+    private PontosPlayer pontosScript;
+    [SerializeField] private GameObject pontos;
     // Start is called before the first frame update
     void Start()
     {
-        
+        pontos = GameObject.Find("Canvas");
+        pontosScript = pontos.GetComponent<PontosPlayer>();
     }
 
     // Update is called once per frame
@@ -25,8 +27,7 @@ public class DetectCollisions : MonoBehaviour
     {
         Destroy(gameObject);
         Destroy(other.gameObject);
-        pontosscript.GanharPontos();
-        
+        pontosScript.Ganharpontos(1);
     }
 
 }

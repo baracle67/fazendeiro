@@ -18,13 +18,13 @@ public class MoveForward : MonoBehaviour
     }
     public void Andar()
     {
-        speed = 5f;
+        Time.timeScale = 1;
         print("andar");
     }
 
     public void Parar()
     {
-        speed = 0f;
+        Time.timeScale = 0f;
         print("parar");
     }
 }

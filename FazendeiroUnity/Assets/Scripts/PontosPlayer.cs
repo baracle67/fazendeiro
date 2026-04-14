@@ -19,15 +19,15 @@ public class PontosPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PontosTexto();
         
     }
 
-    void Ganharpontos(int addpontos)
+    public void Ganharpontos(int addpontos)
     {
         pontos = pontos + addpontos;
+        PontosTexto();
     }
-    void PontosTexto()
+    public void PontosTexto()
     {
         pontosText.text = "Pontos: " + pontos;
     }
