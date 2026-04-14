@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject iconePause;
     MoveForward animal;
     int vida = 3;
+    public TextMeshProUGUI vidaText;
     
 
     // Start is called before the first frame update
@@ -121,7 +123,7 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    private void FicarInvisivel()
+    public void FicarInvisivel()
     {
         if (invisibleAction.WasPerformedThisFrame())
         {
@@ -137,6 +139,17 @@ public class PlayerController : MonoBehaviour
         Destroy(other.gameObject);
         vida-=1;
         print(vida);
+    }
+
+      public void AddScore(int points)
+    {
+        vida += points;
+        VidaTexto();
+    }
+
+    void VidaTexto()
+    {
+        vidaText.text = "Vida: " + vida;
     }
 
     private IEnumerator WaitAndPrint(float waitTime)
