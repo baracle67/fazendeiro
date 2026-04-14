@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4666127934594452992}
   - component: {fileID: 7937284709575902890}
   - component: {fileID: -6812675353450720519}
+  - component: {fileID: -4098248050023684936}
   m_Layer: 0
   m_Name: Food_Pizza_01
   m_TagString: Untagged
@@ -180,4 +181,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1762358acf4b14a9acd1856da7f5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pontos: {fileID: 5792771941504673540, guid: bdb76be5387fe39429099295a36dd82d, type: 3}
+  pontos: {fileID: 0}
+--- !u!114 &-4098248050023684936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368550998252044939}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1d5619a3ae034c83ce8d817da38b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Pizarange
+  speed: 20

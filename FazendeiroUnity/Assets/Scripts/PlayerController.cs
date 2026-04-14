@@ -21,17 +21,21 @@ public class PlayerController : MonoBehaviour
     private IEnumerator coroutine;
     [SerializeField] private GameObject painelPause;
     [SerializeField] private GameObject iconePause;
+    [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject invisivel;
+
     MoveForward animal;
     int vida = 3;
     public TextMeshProUGUI vidaText;
-    
+    bool ghost = false;
 
     // Start is called before the first frame update
     void Start()
     {
         painelPause.SetActive(false);
+        gameOver.SetActive(false);
         animal = GameObject.FindGameObjectWithTag("animal").GetComponent<MoveForward>();
-        
+        Despause();
     }
 
     // Update is called once per frame
@@ -66,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
         if(vida<=0)
         {
-            Destroy(gameObject);
+            GameOver();
         }
         
         if (invisibleAction.WasPerformedThisFrame())
@@ -102,7 +106,6 @@ public class PlayerController : MonoBehaviour
     
     public void Pause()
     {
-        
         InputActions.FindActionMap("UI").Enable();
         InputActions.FindActionMap("Player").Disable();
         painelPause.SetActive(true);
@@ -119,7 +122,6 @@ public class PlayerController : MonoBehaviour
         iconePause.SetActive(true);
         animal.Andar();
         Debug.Log("UI");
-        
     }
 
     public void Menu()
@@ -127,21 +129,41 @@ public class PlayerController : MonoBehaviour
         Debug.Log("sair");
         SceneManager.LoadScene("Menu");
     }
+    
+
+    public void GameOver()
+    {
+        gameOver.SetActive(true);
+        InputActions.FindActionMap("UI").Enable();
+        InputActions.FindActionMap("Player").Disable();
+    }
+
+    public void Sair()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
 
     public void FicarInvisivel()
     {        
+        ghost = true;
         print("invisivel");
-        transform.localScale = Vector3.zero;
+        invisivel.SetActive(false);
         coroutine = WaitAndPrint(2.0f);
         StartCoroutine(coroutine);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
-        vida-=1;
-        VidaTexto();
-        print(vida);
+        if(ghost == false)
+        {
+            Destroy(other.gameObject);
+            vida-=1;
+            VidaTexto();
+            print(vida);
+        }
+        
     }
 
     void VidaTexto()
@@ -153,7 +175,8 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         print("Coroutine ended: " + Time.time + " seconds");
-        transform.localScale = Vector3.one;
+        invisivel.SetActive(true);
+        ghost = false;
     }
 
     private void Awake()

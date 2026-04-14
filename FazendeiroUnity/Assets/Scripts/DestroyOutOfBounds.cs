@@ -31,7 +31,7 @@ public class DestroyOutOfBounds : MonoBehaviour
 
     public void Exit()
     {
-        Debug.Log("Game Over!");
+        //Debug.Log("Game Over!");
         /*
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();

@@ -25,9 +25,13 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-        Destroy(other.gameObject);
-        pontosScript.Ganharpontos(1);
+        if (!other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+            pontosScript.Ganharpontos(1);
+        }
+        
     }
 
 }
