@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private InputAction pauseAction;
     private InputAction despauseAction;
     private InputAction invisibleAction;
+    private IEnumerator coroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -94,7 +95,17 @@ public class PlayerController : MonoBehaviour
         if (invisibleAction.WasPerformedThisFrame())
         {
             print("invisivel");
+            transform.localScale = Vector3.zero;
+            coroutine = WaitAndPrint(2.0f);
+            StartCoroutine(coroutine);
         }
+    }
+
+    private IEnumerator WaitAndPrint(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        print("Coroutine ended: " + Time.time + " seconds");
+        transform.localScale = Vector3.one;
     }
 
     private void Awake()
