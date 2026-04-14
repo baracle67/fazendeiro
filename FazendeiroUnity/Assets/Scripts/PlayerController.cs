@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour
     private InputAction despauseAction;
     private InputAction invisibleAction;
     private IEnumerator coroutine;
+    [SerializeField] private GameObject painelPause;
+    [SerializeField] private GameObject iconePause;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        painelPause.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,7 +46,15 @@ public class PlayerController : MonoBehaviour
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         }
 
-        Pause();
+        if(pauseAction.WasPerformedThisFrame())
+        {
+            Pause();
+
+        } else if(despauseAction.WasPerformedThisFrame())
+        {
+            Despause();
+        }
+
         FicarInvisivel();
         
     }
@@ -74,20 +84,30 @@ public class PlayerController : MonoBehaviour
         InputActions.FindActionMap("Player").Disable();
     }
     
-    private void Pause()
+    public void Pause()
     {
-        if(pauseAction.WasPerformedThisFrame())
-        {
-            InputActions.FindActionMap("UI").Enable();
-            InputActions.FindActionMap("Player").Disable();
-            Debug.Log("esc");
-        } else if(despauseAction.WasPerformedThisFrame())
-        {
-            InputActions.FindActionMap("UI").Disable();
-            InputActions.FindActionMap("Player").Enable();
-            Debug.Log("UI");
-        }
         
+        InputActions.FindActionMap("UI").Enable();
+        InputActions.FindActionMap("Player").Disable();
+        painelPause.SetActive(true);
+        iconePause.SetActive(false);
+        Debug.Log("esc");
+    }
+
+    public void Despause()
+    {
+        InputActions.FindActionMap("UI").Disable();
+        InputActions.FindActionMap("Player").Enable();
+        painelPause.SetActive(false);
+        iconePause.SetActive(true);
+        Debug.Log("UI");
+        
+    }
+
+    public void Sair()
+    {
+        Debug.Log("sair");
+        Application.Quit();
     }
 
     private void FicarInvisivel()
